@@ -1,5 +1,5 @@
 import SearchIcon from '@mui/icons-material/Search'
-import { List, ItemAction } from '@List'
+import { List, EntityAction } from '@List'
 
 const headers = <>
     <th>Title</th>
@@ -11,9 +11,9 @@ const row = (item) => {
     </>
 }
 
-const itemActions = (item) => {
+const entityActions = (item) => {
     return <>
-        <ItemAction
+        <EntityAction
             title='Search Google'
             icon={SearchIcon}
             goTo={`https://images.google.com`}

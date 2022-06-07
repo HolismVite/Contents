@@ -1,6 +1,6 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
-import { List, Text, Enum, ItemAction, Image, BooleanProperty, ValueWithTitle, TitleSubtitle, app } from '@List'
+import { List, Text, Enum, EntityAction, Image, BooleanProperty, ValueWithTitle, TitleSubtitle, app } from '@List'
 import UpsertPage from './Upsert'
 import { EntitySeo } from '../../Seo/Exports'
 
@@ -44,12 +44,12 @@ const row = (item) => <>
     </td>
 </>
 
-const itemActions = (item) => <>
+const entityActions = (item) => <>
     <EntitySeo
         entityType='Page'
         entityGuid={item.guid}
     />
-    <ItemAction
+    <EntityAction
         title='Edit content'
         icon={TextSnippetIcon}
         goTo={`/page/editContent?id=${item.id}`}
@@ -65,7 +65,7 @@ const Pages = () => {
         create={UpsertPage}
         hasEdit={true}
         hasDelete={true}
-        itemActions={itemActions}
+        entityActions={entityActions}
     />
 }
 
