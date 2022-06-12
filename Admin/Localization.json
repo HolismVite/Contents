@@ -1,0 +1,12 @@
+[
+    {
+        "locale": "fa",
+        "translations": {
+            "Contents": "محتوا",
+            "Pages": "صفحات",
+            "Sections": "بخش ها",
+            "Texts": "متون",
+            "Images": "تصاویر"
+        }
+    }
+]
