@@ -13,7 +13,7 @@ const filters = <>
 
 const headers = <>
     <th></th>
-    <th>Title</th>
+    <th start={true}>Title</th>
     <th>Comments enabled?</th>
 </>
 
@@ -25,7 +25,7 @@ const row = (item) => <>
         />
     </td>
     <td>
-        <a target='_blank' href={`${app.env('PAGES_BASE_URL')}/${item.slug}`}>
+        <a target='_blank' href={`${app.env('PAGE_BASE_URL')}/${item.slug}`}>
             <TitleSubtitle
                 title={<ValueWithTitle
                     value={item.title}
