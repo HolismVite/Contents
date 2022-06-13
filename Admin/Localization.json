@@ -6,7 +6,11 @@
             "Pages": "صفحات",
             "Sections": "بخش ها",
             "Texts": "متون",
-            "Images": "تصاویر"
+            "Images": "تصاویر",
+            "Create page": "ایجاد صفحه",
+            "Edit page": "ویرایش صفحه",
+            "Title is not written": "عنوان نوشته نشده است",
+            "Content": "محتوا"
         }
     }
 ]
