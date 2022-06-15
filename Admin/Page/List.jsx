@@ -13,7 +13,7 @@ const filters = <>
 
 const headers = <>
     <th></th>
-    <th start={true}>Title</th>
+    <th start>Title</th>
     <th>Comments enabled?</th>
 </>
 
