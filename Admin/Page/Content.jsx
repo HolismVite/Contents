@@ -3,7 +3,7 @@ import { PageForm, Rte, app, post } from '@Form'
 const inputs = <>
     <Rte
         column='Content'
-        placeholder='Write your post here ...'
+        placeholder='Write the page content here ...'
     />
 </>
 
