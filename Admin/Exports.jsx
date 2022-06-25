@@ -10,55 +10,55 @@ import Texts from './Text/List'
 
 const ContentRoutes = [
     {
-        "path": "/pages",
-        "component": Pages
+        path: "/pages",
+        component: Pages
     },
     {
-        "path": "/page/editContent",
-        "component": PageContent
+        path: "/page/editContent",
+        component: PageContent
     },
     {
-        "path": "/sections",
-        "component": Sections
+        path: "/sections",
+        component: Sections
     },
     {
-        "path": "/section/items",
-        "component": SectionItems
+        path: "/section/items",
+        component: SectionItems
     },
     {
-        "path": "/section/actions",
-        "component": SectionActions
+        path: "/section/actions",
+        component: SectionActions
     },
     {
-        "path": "/staticImages",
-        "component": Images
+        path: "/staticImages",
+        component: Images
     },
     {
-        "path": "/staticTexts",
-        "component": Texts
+        path: "/staticTexts",
+        component: Texts
     }
 ]
 
 const ContentMenu = [
     {
-        "title": "Contents",
+        title: "Contents",
         "icon": AbcIcon,
-        "children": [
+        children: [
             {
-                "title": "Pages",
-                "url": "/pages"
+                title: "Pages",
+                url: "/pages"
             },
             {
-                "title": "Sections",
-                "url": "/sections"
+                title: "Sections",
+                url: "/sections"
             },
             {
-                "title": "Texts",
-                "url": "/texts"
+                title: "Texts",
+                url: "/texts"
             },
             {
-                "title": "Images",
-                "url": "/images"
+                title: "Images",
+                url: "/images"
             }
         ]
     }
