@@ -30,11 +30,11 @@ const ContentRoutes = [
         component: SectionActions
     },
     {
-        path: "/staticImages",
+        path: "/content/images",
         component: Images
     },
     {
-        path: "/staticTexts",
+        path: "/content/texts",
         component: Texts
     }
 ]
@@ -54,11 +54,11 @@ const ContentMenu = [
             },
             {
                 title: "Texts",
-                url: "/texts"
+                url: "/content/texts"
             },
             {
                 title: "Images",
-                url: "/images"
+                url: "/content/images"
             }
         ]
     }
