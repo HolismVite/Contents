@@ -1,7 +1,10 @@
-import { DialogForm, Key, Text, LongText } from '@Form'
+import { DialogForm, Key, Text, LongText, Date } from '@Form'
 
 const inputs = <>
     <Key />
+    <Date
+        column='Date'
+    />
     <Text
         column="Title"
         placeholder="Title"
