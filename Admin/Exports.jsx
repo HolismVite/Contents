@@ -1,11 +1,12 @@
 import AbcIcon from '@mui/icons-material/Abc';
 
 import Images from './Image/List'
-import Pages from './Page/List'
 import PageContent from './Page/Content'
-import Sections from './Section/List'
-import SectionItems from './Section/Items'
+import Pages from './Page/List'
 import SectionActions from './Section/Actions'
+import SectionContent from './Section/Content';
+import SectionItems from './Section/Items'
+import Sections from './Section/List'
 import Texts from './Text/List'
 
 const ContentRoutes = [
@@ -20,6 +21,10 @@ const ContentRoutes = [
     {
         path: "/sections",
         component: Sections
+    },
+    {
+        path: "/section/editContent",
+        component: SectionContent
     },
     {
         path: "/section/items",

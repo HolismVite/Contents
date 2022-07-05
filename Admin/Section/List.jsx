@@ -1,3 +1,4 @@
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
 import { List, Text, Image, TitleSubtitle, ValueWithTitle, EntityAction } from '@List'
@@ -52,6 +53,11 @@ const entityActions = (item) => <>
         title='Manage items'
         icon={ListAltIcon}
         goTo={`/section/items?sectionId=${item.id}`}
+    />
+    <EntityAction
+        title='Edit content'
+        icon={TextSnippetIcon}
+        goTo={`/section/editContent?id=${item.id}`}
     />
 </>
 
