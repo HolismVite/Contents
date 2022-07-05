@@ -1,7 +1,7 @@
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
 import { List, Text, Image, TitleSubtitle, ValueWithTitle, EntityAction } from '@List'
-import UpdateSection from './Update'
+import UpsertSection from './Upsert'
 
 const filters = <>
     <Text
@@ -55,16 +55,17 @@ const entityActions = (item) => <>
     />
 </>
 
-const Sections = () => {
+const Sections = ({ isSuperAdmin }) => {
     return <List
         title='Sections'
         entityType='Section'
+        create={isSuperAdmin && UpsertSection}
         filters={filters}
         sorts={sorts}
         headers={headers}
         row={row}
         entityActions={entityActions}
-        edit={UpdateSection}
+        edit={UpsertSection}
     />
 }
 

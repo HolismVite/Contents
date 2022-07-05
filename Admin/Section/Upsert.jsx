@@ -1,11 +1,7 @@
-import { DialogForm, Text, LongText } from '@Form'
+import { DialogForm, Key, Text, LongText } from '@Form'
 
 const inputs = <>
-    <Text
-        column='key'
-        placeholder='Key'
-        superAdmin
-    />
+    <Key />
     <Text
         column="Title"
         placeholder="Title"
@@ -20,11 +16,11 @@ const inputs = <>
     />
 </>
 
-const UpdateSection = () => {
+const UpsertSection = () => {
     return <DialogForm
         entityType='Section'
         inputs={inputs}
     />
 }
 
-export default UpdateSection
+export default UpsertSection
