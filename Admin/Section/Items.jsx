@@ -35,12 +35,12 @@ const SectionItems = () => {
         :
         <List
             title={`${section.title}`}
-            breadcrumbItems={[{
-                title: 'Sections',
-                link: '/sections'
-            }, {
-                title: 'Items'
-            }]}
+            // breadcrumbItems={[{
+            //     title: 'Sections',
+            //     link: '/sections'
+            // }, {
+            //     title: 'Items'
+            // }]}
             entityType='SectionItem'
             headers={headers}
             row={row}
