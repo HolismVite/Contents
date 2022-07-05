@@ -2,6 +2,11 @@ import { DialogForm, Text, LongText } from '@Form'
 
 const inputs = <>
     <Text
+        column='key'
+        placeholder='Key'
+        superAdmin
+    />
+    <Text
         column="Title"
         placeholder="Title"
     />

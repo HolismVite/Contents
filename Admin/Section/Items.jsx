@@ -10,44 +10,39 @@ const row = (item) => <>
     <td>{item.title}</td>
 </>
 
-const SectionItems = () => {
+const SectionItems = ({ setPageProgress }) => {
 
-    const [progress, setProgress] = useState(true)
     const { sectionId } = app.parseQuery()
     const [section, setSection] = useState({})
     const { error } = useMessage()
 
     useEffect(() => {
-        setProgress(true)
+        setPageProgress(true)
         get(`/section/get/${sectionId}`)
             .then(data => {
-                setProgress(false)
+                setPageProgress(false)
                 setSection(data)
             }, e => {
-                setProgress(false)
+                setPageProgress(false)
                 error(e)
             })
     }, [])
 
-    return progress
-        ?
-        <Progress />
-        :
-        <List
-            title={`${section.title}`}
-            // breadcrumbItems={[{
-            //     title: 'Sections',
-            //     link: '/sections'
-            // }, {
-            //     title: 'Items'
-            // }]}
-            entityType='SectionItem'
-            headers={headers}
-            row={row}
-            upsert={section.canChangeItemsCount ? UpsertSectionItem : false}
-            hasEdit={true}
-            hasDelete={true}
-        />
+    return <List
+        title={`${section.title}`}
+        // breadcrumbItems={[{
+        //     title: 'Sections',
+        //     link: '/sections'
+        // }, {
+        //     title: 'Items'
+        // }]}
+        entityType='SectionItem'
+        headers={headers}
+        row={row}
+        upsert={section.canChangeItemsCount ? UpsertSectionItem : false}
+        hasEdit={true}
+        hasDelete={true}
+    />
 }
 
 export default SectionItems
