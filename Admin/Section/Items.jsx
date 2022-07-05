@@ -34,7 +34,13 @@ const SectionItems = () => {
         <Progress />
         :
         <List
-            title='Section items'
+            title={`${section.title}`}
+            breadcrumbItems={[{
+                title: 'Sections',
+                link: '/sections'
+            }, {
+                title: 'Items'
+            }]}
             entityType='SectionItem'
             headers={headers}
             row={row}
