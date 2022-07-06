@@ -14,22 +14,23 @@ const SectionItems = ({ setPageProgress }) => {
 
     const { sectionId } = app.parseQuery()
     const [section, setSection] = useState({})
+    const [progress, setProgress] = useState(false)
     const { error } = useMessage()
 
     useEffect(() => {
-        setPageProgress(true)
+        setProgress(true)
         get(`/section/get/${sectionId}`)
             .then(data => {
-                setPageProgress(false)
+                setProgress(false)
                 setSection(data)
             }, e => {
-                setPageProgress(false)
+                setProgress(false)
                 error(e)
             })
     }, [])
 
     return <List
-        title={`${section.title}`}
+        title={section.title}
         // breadcrumbItems={[{
         //     title: 'Sections',
         //     link: '/sections'
