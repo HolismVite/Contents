@@ -20,7 +20,7 @@ const SectionItems = ({ setProgress }) => {
         setProgress(true)
         get(`/section/get/${sectionId}`)
             .then(data => {
-                // setProgress(false)
+                setProgress(false)
                 setSection(data)
             }, e => {
                 setProgress(false)
