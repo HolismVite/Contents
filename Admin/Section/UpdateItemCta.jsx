@@ -42,6 +42,7 @@ const UpdateItemCta = ({
 
     return <DialogForm
         title="Update CTA"
+        entity={entity}
         explanations={
             <Info
                 title="Note"
