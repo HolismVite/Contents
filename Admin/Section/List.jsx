@@ -1,7 +1,15 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
-import { List, Text, Image, TitleSubtitle, ValueWithTitle, EntityAction } from '@List'
+import {
+    List,
+    Text,
+    Image,
+    TitleSubtitle,
+    ValueWithTitle,
+    EntityAction,
+    BooleanProperty,
+} from '@List'
 import UpsertSection from './Upsert'
 
 const filters = <>
@@ -22,6 +30,8 @@ const headers = <>
     <th></th>
     <th>Content</th>
     <th>Name</th>
+    <th superAdmin>Variable items?</th>
+    <th superAdmin>Variable actions?</th>
 </>
 
 const row = (item) => <>
@@ -41,6 +51,20 @@ const row = (item) => <>
         />
     </td>
     <td>{item.name}</td>
+    <td superAdmin>
+        <BooleanProperty
+            column='VariableItems'
+            value={item.variableItems}
+            actionUrl={`/section/toggleItemsVariability/${item.id}`}
+        />
+    </td>
+    <td superAdmin>
+        <BooleanProperty
+            column='VariableActions'
+            value={item.variableActions}
+            actionUrl={`/section/toggleActionsVariability/${item.id}`}
+        />
+    </td>
 </>
 
 const entityActions = (item) => <>

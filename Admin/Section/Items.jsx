@@ -39,7 +39,7 @@ const SectionItems = ({ setProgress }) => {
         entityType='SectionItem'
         headers={headers}
         row={row}
-        upsert={section.canChangeItemsCount ? UpsertSectionItem : false}
+        upsert={section.variableItems ? UpsertSectionItem : false}
         hasEdit={true}
         hasDelete={true}
     />
