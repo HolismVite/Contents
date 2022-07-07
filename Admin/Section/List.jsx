@@ -2,13 +2,13 @@ import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
 import {
+    BooleanProperty,
+    EntityAction,
+    Image,
     List,
     Text,
-    Image,
     TitleSubtitle,
     ValueWithTitle,
-    EntityAction,
-    BooleanProperty,
 } from '@List'
 import UpsertSection from './Upsert'
 

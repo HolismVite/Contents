@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react'
-import { List, Text, app, get, useMessage } from '@List'
+import {
+    app,
+    get,
+    List,
+    Text,
+    useMessage,
+    TitleSubtitle,
+    ValueWithTitle,
+} from '@List'
 import UpsertSectionItem from './UpsertItem'
 
 const headers = <>
@@ -7,7 +15,15 @@ const headers = <>
 </>
 
 const row = (item) => <>
-    <td>{item.title}</td>
+    <td >
+        <TitleSubtitle
+            title={<ValueWithTitle
+                value={item.title}
+                title={item.summary}
+            />}
+            subtitle={item.subtitle}
+        />
+    </td>
 </>
 
 const SectionItems = ({ setProgress }) => {
