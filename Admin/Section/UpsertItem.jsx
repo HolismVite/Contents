@@ -1,10 +1,25 @@
-import { DialogForm, Text } from '@Form'
+import {
+    DialogForm,
+    LongText,
+    Text,
+} from '@Form'
 
 const inputs = <>
     <Text
-        column='Title'
-        placeholder='Title'
-        required='Please provide the title'
+        column="Supertitle"
+        placeholder="Supertitle"
+    />
+    <Text
+        column="Title"
+        placeholder="Title"
+    />
+    <Text
+        column='Subtitle'
+        placeholder='Subtitle'
+    />
+    <LongText
+        column="Summary"
+        placeholder='Summary'
     />
 </>
 

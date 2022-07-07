@@ -1,7 +1,10 @@
+import BoltIcon from '@mui/icons-material/Bolt';
 import { useState, useEffect } from 'react'
 import {
     app,
+    EntityAction,
     get,
+    Image,
     List,
     Text,
     useMessage,
@@ -9,14 +12,24 @@ import {
     ValueWithTitle,
 } from '@List'
 import UpsertSectionItem from './UpsertItem'
+import UpdateItemCta from './UpdateItemCta';
 
 const headers = <>
-    <th>Title</th>
+    <td></td>
+    <th start>Title</th>
+    <th>CTA</th>
 </>
 
 const row = (item) => <>
+    <td>
+        <Image
+            url={item.relatedItems?.imageUrl}
+            uploadUrl={`/section/setImage?sectionId=${item.id}`}
+        />
+    </td>
     <td >
         <TitleSubtitle
+            supertitle={item.supertitle}
             title={<ValueWithTitle
                 value={item.title}
                 title={item.summary}
@@ -24,6 +37,21 @@ const row = (item) => <>
             subtitle={item.subtitle}
         />
     </td>
+    <td>
+        {
+            item.ctaText
+            &&
+            <div>yes</div>
+        }
+    </td>
+</>
+
+const entityActions = (entity) => <>
+    <EntityAction
+        title='Manage actions'
+        icon={BoltIcon}
+        dialog={UpdateItemCta}
+    />
 </>
 
 const SectionItems = ({ setProgress }) => {
@@ -55,6 +83,7 @@ const SectionItems = ({ setProgress }) => {
         entityType='SectionItem'
         headers={headers}
         row={row}
+        entityActions={entityActions}
         upsert={section.variableItems ? UpsertSectionItem : false}
         hasEdit={true}
         hasDelete={true}
