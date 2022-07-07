@@ -24,7 +24,7 @@ const row = (item) => <>
     <td>
         <Image
             url={item.relatedItems?.imageUrl}
-            uploadUrl={`/section/setImage?sectionId=${item.id}`}
+            uploadUrl={`/sectionItem/setImage?itemId=${item.id}`}
         />
     </td>
     <td >
