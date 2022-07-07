@@ -41,7 +41,7 @@ const row = (item) => <>
         {
             item.ctaText
             &&
-            <div>yes</div>
+            <a href={item.ctaLink?.startsWith('http') ? item.ctaLink : `${app.env('SITE_HOST')}${item.ctaLink}`} target="_blank" className="link">{item.ctaText}</a>
         }
     </td>
 </>
