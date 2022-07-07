@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { List, Text, Progress, app, get, useMessage } from '@List'
+import { List, Text, app, get, useMessage } from '@List'
 import UpsertSectionItem from './UpsertItem'
 
 const headers = <>
@@ -10,18 +10,17 @@ const row = (item) => <>
     <td>{item.title}</td>
 </>
 
-const SectionItems = ({ setPageProgress }) => {
+const SectionItems = ({ setProgress }) => {
 
     const { sectionId } = app.parseQuery()
     const [section, setSection] = useState({})
-    const [progress, setProgress] = useState(false)
     const { error } = useMessage()
 
     useEffect(() => {
         setProgress(true)
         get(`/section/get/${sectionId}`)
             .then(data => {
-                setProgress(false)
+                // setProgress(false)
                 setSection(data)
             }, e => {
                 setProgress(false)
