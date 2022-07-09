@@ -29,12 +29,12 @@ const row = (item) => <>
     </td>
     <td >
         <TitleSubtitle
-            supertitle={item.supertitle}
+            supertitle={item.supertitle.cut(40)}
             title={<ValueWithTitle
-                value={item.title}
+                value={item.title.cut(30)}
                 title={item.summary}
             />}
-            subtitle={item.subtitle}
+            subtitle={item.subtitle.cut(40)}
         />
     </td>
     <td>

@@ -43,11 +43,12 @@ const row = (item) => <>
     </td>
     <td>
         <TitleSubtitle
+            supertitle={item.supertitle?.cut(40)}
             title={<ValueWithTitle
-                value={item.title}
-                title={item.summary}
+                value={item.title?.cut(30)}
+                title={item.description}
             />}
-            subtitle={item.subtitle}
+            subtitle={item.subtitle?.cut(40)}
         />
     </td>
     <td>{item.name}</td>
