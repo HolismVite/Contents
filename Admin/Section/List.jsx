@@ -1,6 +1,7 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
+import SettingsIcon from '@mui/icons-material/Settings';
 import {
     BooleanProperty,
     EntityAction,
@@ -11,6 +12,7 @@ import {
     ValueWithTitle,
 } from '@List'
 import UpsertSection from './Upsert'
+import ConfigureItems from './ConfigureItems'
 
 const filters = <>
     <Text
@@ -84,6 +86,11 @@ const entityActions = (item) => <>
         title='Edit content'
         icon={TextSnippetIcon}
         goTo={`/section/editContent?id=${item.id}`}
+    />
+    <EntityAction
+        title='Configure Items'
+        icon={SettingsIcon}
+        dialog={ConfigureItems}
     />
 </>
 
