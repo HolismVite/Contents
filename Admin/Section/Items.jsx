@@ -88,6 +88,7 @@ const SectionItems = ({ setProgress }) => {
         upsert={section.variableItems ? UpsertSectionItem : false}
         hasEdit={true}
         hasDelete={true}
+        separateRowForActions={true}
     />
 }
 

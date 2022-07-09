@@ -105,6 +105,7 @@ const Sections = ({ isSuperAdmin }) => {
         row={row}
         entityActions={entityActions}
         edit={UpsertSection}
+        separateRowForActions={true}
     />
 }
 
