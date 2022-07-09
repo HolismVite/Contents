@@ -38,7 +38,8 @@ const row = (item) => <>
     <td>
         <Image
             url={item.relatedItems.imageUrl}
-            uploadUrl={`/section/setImage?sectionId=${item.id}`}
+            uploadUrl={`/section/setImage?id=${item.id}&property=ImageGuid`}
+            deletionUrl={`/section/deleteImage?id=${item.id}&property=ImageGuid`}
         />
     </td>
     <td>
@@ -56,7 +57,7 @@ const row = (item) => <>
         <BooleanProperty
             column='VariableItems'
             value={item.variableItems}
-            actionUrl={`/section/toggleItemsVariability/${item.id}`}
+            actionUrl={`/section/toggleBoolean?id=${item.id}&property=VariableItems`}
         />
     </td>
     <td superAdmin>
