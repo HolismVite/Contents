@@ -1,5 +1,4 @@
 import AbcIcon from '@mui/icons-material/Abc';
-
 import Images from './Image/List'
 import PageContent from './Page/Content'
 import Pages from './Page/List'
@@ -69,5 +68,5 @@ const ContentMenu = [
     }
 ]
 
-export { ContentRoutes };
 export { ContentMenu }
+export { ContentRoutes }
