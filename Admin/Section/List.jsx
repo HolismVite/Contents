@@ -16,7 +16,10 @@ import ConfigureItems from './ConfigureItems'
 
 const filters = <>
     <Text
-        column=''
+        column='Name'
+    />
+    <Text
+        column='Title'
     />
 </>
 
