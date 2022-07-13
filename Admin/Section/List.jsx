@@ -25,9 +25,24 @@ const filters = <>
 
 const sorts = [
     {
-        "caption": "A-Z",
+        "caption": "Title A-Z",
         "column": "Title",
         "direction": "asc"
+    },
+    {
+        "caption": "Title Z-A",
+        "column": "Title",
+        "direction": "desc"
+    },
+    {
+        "caption": "Name A-Z",
+        "column": "Name",
+        "direction": "asc"
+    },
+    {
+        "caption": "Name Z-A",
+        "column": "Name",
+        "direction": "desc"
     }
 ]
 
