@@ -12,7 +12,6 @@ import {
 } from '@List'
 import { EntityConfigsAction } from 'Configuration'
 import UpsertSection from './Upsert'
-import ConfigureItems from './ConfigureItems'
 
 const filters = <>
     <Text
