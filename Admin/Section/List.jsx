@@ -105,6 +105,7 @@ const entityActions = (entity) => <>
         goTo={`/section/editContent?id=${entity.id}`}
     />
     <EntityConfigsAction
+        entityType={entity.relatedItems.entityType}
         entityGuid={entity.guid}
     />
 </>
@@ -119,6 +120,7 @@ const Sections = ({ isSuperAdmin }) => {
         headers={headers}
         row={row}
         entityActions={entityActions}
+        // hasDelete={true}
         edit={UpsertSection}
         separateRowForActions={true}
     />
