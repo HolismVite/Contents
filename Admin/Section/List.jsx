@@ -1,7 +1,6 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
-import SettingsIcon from '@mui/icons-material/Settings';
 import {
     BooleanProperty,
     EntityAction,
@@ -11,6 +10,7 @@ import {
     TitleSubtitle,
     ValueWithTitle,
 } from '@List'
+import { EntityConfigsAction } from 'Configuration'
 import UpsertSection from './Upsert'
 import ConfigureItems from './ConfigureItems'
 
@@ -89,26 +89,24 @@ const row = (item) => <>
     </td>
 </>
 
-const entityActions = (item) => <>
+const entityActions = (entity) => <>
     <EntityAction
         title='Manage actions'
         icon={BoltIcon}
-        goTo={`/section/actions?sectionId=${item.id}`}
+        goTo={`/section/actions?sectionId=${entity.id}`}
     />
     <EntityAction
         title='Manage items'
         icon={ListAltIcon}
-        goTo={`/section/items?sectionId=${item.id}`}
+        goTo={`/section/items?sectionId=${entity.id}`}
     />
     <EntityAction
         title='Edit content'
         icon={TextSnippetIcon}
-        goTo={`/section/editContent?id=${item.id}`}
+        goTo={`/section/editContent?id=${entity.id}`}
     />
-    <EntityAction
-        title='Configure Items'
-        icon={SettingsIcon}
-        dialog={ConfigureItems}
+    <EntityConfigsAction
+        entityGuid={entity.guid}
     />
 </>
 
