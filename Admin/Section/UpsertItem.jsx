@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import {
     DialogForm,
     LongText,
     Text,
 } from '@Form'
+import useSection from '../Hooks/useSection'
 
 const inputs = (configs) => <>
     {
@@ -35,11 +37,15 @@ const inputs = (configs) => <>
     }
 </>
 
-const UpsertSectionItem = () => () => {
+const UpsertSectionItem = () => {
+
+    const [progress, setProgress] = useState(false)
+    const { configs } = useSection({ setProgress })
+
     return <DialogForm
         entityType='SectionItem'
-        // onLoad={}
-        inputs={inputs({})}
+        progress={progress}
+        inputs={inputs(configs)}
     />
 }
 
