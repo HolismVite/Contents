@@ -13,39 +13,62 @@ import {
 } from '@List'
 import UpsertSectionItem from './UpsertItem'
 import UpdateItemCta from './UpdateItemCta';
+import useSection from '../Hooks/useSection';
 
 const headers = (configs) => <>
-    <td></td>
+    {configs.itemsHaveImage && <td></td>}
     <th start>Title</th>
     {configs.itemsHavePrimaryCta && <th>CTA</th>}
+    {configs.itemsHaveSecondaryCta && <th>Secondary CTA</th>}
+    {configs.itemsHaveAvatar && <th>Avatar</th>}
+    {configs.itemsHaveSvgIcon && <th>SVG</th>}
 </>
 
 const row = (configs) => (item) => <>
-    <td>
-        <Image
-            url={item.relatedItems?.imageUrl}
-            uploadUrl={`/sectionItem/setImage?id=${item.id}&&property=ImageGuid`}
-            deletionUrl={`/sectionItem/deleteImage?id=${item.id}&&property=ImageGuid`}
-        />
-    </td>
+    {
+        configs.itemsHaveImage &&
+        <td>
+            <Image
+                url={item.relatedItems?.imageUrl}
+                uploadUrl={`/sectionItem/setImage?id=${item.id}&&property=ImageGuid`}
+                deletionUrl={`/sectionItem/deleteImage?id=${item.id}&&property=ImageGuid`}
+            />
+        </td>
+    }
     <td >
         <TitleSubtitle
-            supertitle={item.supertitle.cut(40)}
+            supertitle={item.supertitle?.cut(40)}
             title={<ValueWithTitle
-                value={item.title.cut(30)}
+                value={item.title?.cut(30)}
                 title={item.summary}
             />}
-            subtitle={item.subtitle.cut(40)}
+            subtitle={item.subtitle?.cut(40)}
         />
     </td>
     {
         configs.itemsHavePrimaryCta &&
         <td>
             {
-                item.ctaText
+                item.primaryCtaText
                 &&
-                <a href={item.ctaLink?.startsWith('http') ? item.ctaLink : `${app.env('SITE_HOST')}${item.ctaLink}`} target="_blank" className="link">{item.ctaText}</a>
+                <a href={item.primaryCtaLink?.startsWith('http') ? item.primaryCtaLink : `${app.env('SITE_HOST')}${item.primaryCtaLink}`} target="_blank" className="link">{item.primaryCtaText}</a>
             }
+        </td>
+    }
+    {
+        configs.itemsHaveSecondaryCta &&
+        <td>
+            {
+                item.secondaryCtaText
+                &&
+                <a href={item.secondaryCtaLink?.startsWith('http') ? item.secondaryCtaLink : `${app.env('SITE_HOST')}${item.secondaryCtaLink}`} target="_blank" className="link">{item.secondaryCtaText}</a>
+            }
+        </td>
+    }
+    {
+        configs.itemsHaveSvgIcon &&
+        <td>
+            SVG
         </td>
     }
 </>
@@ -60,32 +83,10 @@ const entityActions = (configs) => (entity) => <>
 
 const SectionItems = ({ setProgress }) => {
 
-    const { sectionId } = app.parseQuery()
-    const [section, setSection] = useState({})
-    const [configs, setConfigs] = useState({})
-    const { error } = useMessage()
-
-    useEffect(() => {
-        setProgress(true)
-        get(`/section/get/${sectionId}`)
-            .then(data => {
-                setProgress(false)
-                setSection(data)
-            }, e => {
-                setProgress(false)
-                error(e)
-            })
-    }, [])
-
-    useEffect(() => {
-        if (section && section.relatedItems) {
-            setConfigs(section.relatedItems.configs)
-        }
-    }, [section])
-
-    useEffect(() => {
-        console.log(configs)
-    }, [configs])
+    const {
+        configs,
+        section,
+    } = useSection({ setProgress })
 
     return <List
         title={section.title}
@@ -99,9 +100,9 @@ const SectionItems = ({ setProgress }) => {
         headers={headers(configs)}
         row={row(configs)}
         entityActions={entityActions(configs)}
-        upsert={section.variableItems ? UpsertSectionItem : false}
+        upsert={configs.variableItems ? UpsertSectionItem : false}
         hasEdit={true}
-        hasDelete={true}
+        hasDelete={configs.variableItems}
         separateRowForActions={true}
     />
 }

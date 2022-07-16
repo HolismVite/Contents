@@ -49,8 +49,6 @@ const headers = <>
     <th></th>
     <th>Content</th>
     <th>Name</th>
-    <th superAdmin>Variable items?</th>
-    <th superAdmin>Variable actions?</th>
 </>
 
 const row = (item) => <>
@@ -72,20 +70,6 @@ const row = (item) => <>
         />
     </td>
     <td>{item.name}</td>
-    <td superAdmin>
-        <BooleanProperty
-            column='VariableItems'
-            value={item.variableItems}
-            actionUrl={`/section/toggleBoolean?id=${item.id}&property=VariableItems`}
-        />
-    </td>
-    <td superAdmin>
-        <BooleanProperty
-            column='VariableActions'
-            value={item.variableActions}
-            actionUrl={`/section/toggleActionsVariability/${item.id}`}
-        />
-    </td>
 </>
 
 const entityActions = (entity) => <>
@@ -107,6 +91,7 @@ const entityActions = (entity) => <>
     <EntityConfigsAction
         entityType={entity.relatedItems.entityType}
         entityGuid={entity.guid}
+        superAdmin
     />
 </>
 

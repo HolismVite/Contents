@@ -4,29 +4,42 @@ import {
     Text,
 } from '@Form'
 
-const inputs = <>
-    <Text
-        column="Supertitle"
-        placeholder="Supertitle"
-    />
-    <Text
-        column="Title"
-        placeholder="Title"
-    />
-    <Text
-        column='Subtitle'
-        placeholder='Subtitle'
-    />
-    <LongText
-        column="Summary"
-        placeholder='Summary'
-    />
+const inputs = (configs) => <>
+    {
+        configs.itemsHaveSupertitle &&
+        <Text
+            column="Supertitle"
+            placeholder="Supertitle"
+        />
+    }
+    {
+        configs.itemsHaveTitle &&
+        <Text
+            column="Title"
+            placeholder="Title"
+        />
+    }
+    {
+        configs.itemsHaveSubtitle &&
+        <Text
+            column='Subtitle'
+            placeholder='Subtitle'
+        />
+    }
+    {
+        configs.itemsHaveSummary &&
+        <LongText
+            column="Summary"
+            placeholder='Summary'
+        />
+    }
 </>
 
-const UpsertSectionItem = () => {
+const UpsertSectionItem = () => () => {
     return <DialogForm
         entityType='SectionItem'
-        inputs={inputs}
+        // onLoad={}
+        inputs={inputs({})}
     />
 }
 
