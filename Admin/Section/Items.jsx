@@ -14,13 +14,13 @@ import {
 import UpsertSectionItem from './UpsertItem'
 import UpdateItemCta from './UpdateItemCta';
 
-const headers = <>
+const headers = (configs) => <>
     <td></td>
     <th start>Title</th>
-    <th>CTA</th>
+    {configs.itemsHavePrimaryCta && <th>CTA</th>}
 </>
 
-const row = (item) => <>
+const row = (configs) => (item) => <>
     <td>
         <Image
             url={item.relatedItems?.imageUrl}
@@ -38,16 +38,19 @@ const row = (item) => <>
             subtitle={item.subtitle.cut(40)}
         />
     </td>
-    <td>
-        {
-            item.ctaText
-            &&
-            <a href={item.ctaLink?.startsWith('http') ? item.ctaLink : `${app.env('SITE_HOST')}${item.ctaLink}`} target="_blank" className="link">{item.ctaText}</a>
-        }
-    </td>
+    {
+        configs.itemsHavePrimaryCta &&
+        <td>
+            {
+                item.ctaText
+                &&
+                <a href={item.ctaLink?.startsWith('http') ? item.ctaLink : `${app.env('SITE_HOST')}${item.ctaLink}`} target="_blank" className="link">{item.ctaText}</a>
+            }
+        </td>
+    }
 </>
 
-const entityActions = (entity) => <>
+const entityActions = (configs) => (entity) => <>
     <EntityAction
         title='Manage actions'
         icon={BoltIcon}
@@ -59,6 +62,7 @@ const SectionItems = ({ setProgress }) => {
 
     const { sectionId } = app.parseQuery()
     const [section, setSection] = useState({})
+    const [configs, setConfigs] = useState({})
     const { error } = useMessage()
 
     useEffect(() => {
@@ -73,6 +77,16 @@ const SectionItems = ({ setProgress }) => {
             })
     }, [])
 
+    useEffect(() => {
+        if (section && section.relatedItems) {
+            setConfigs(section.relatedItems.configs)
+        }
+    }, [section])
+
+    useEffect(() => {
+        console.log(configs)
+    }, [configs])
+
     return <List
         title={section.title}
         // breadcrumbItems={[{
@@ -82,9 +96,9 @@ const SectionItems = ({ setProgress }) => {
         //     title: 'Items'
         // }]}
         entityType='SectionItem'
-        headers={headers}
-        row={row}
-        entityActions={entityActions}
+        headers={headers(configs)}
+        row={row(configs)}
+        entityActions={entityActions(configs)}
         upsert={section.variableItems ? UpsertSectionItem : false}
         hasEdit={true}
         hasDelete={true}
