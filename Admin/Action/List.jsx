@@ -1,5 +1,5 @@
 import { List } from '@List'
-import UpsertSectionAction from './UpsertAction'
+import UpsertSectionAction from './Upsert'
 
 const headers = <>
     <th>Text</th>

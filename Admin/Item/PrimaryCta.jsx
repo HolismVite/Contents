@@ -8,12 +8,12 @@ import {
 
 const inputs = <>
     <Text
-        column='CtaText'
-        placeholder='CTA Text'
+        column='PrimaryCtaText'
+        placeholder='Primary CTA Text'
     />
     <Link
-        column='CtaLink'
-        placeholder='CTA Link'
+        column='PrimaryCtaLink'
+        placeholder='Primary CTA Link'
     />
 </>
 
@@ -29,7 +29,7 @@ const UpdateItemCta = ({
         success,
     }) => {
         setProgress(true)
-        post(`/sectionItem/setCta?id=${entity.id}`, data)
+        post(`/sectionItem/setPrimaryCta?id=${entity.id}`, data)
             .then(data => {
                 setProgress(false)
                 reloadEntity(entity)
@@ -41,7 +41,7 @@ const UpdateItemCta = ({
     }
 
     return <DialogForm
-        title="Update CTA"
+        title="Update Primary CTA"
         explanations={
             <Info
                 title="Note"

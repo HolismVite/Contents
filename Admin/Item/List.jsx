@@ -1,4 +1,5 @@
 import BoltIcon from '@mui/icons-material/Bolt';
+import AnchorIcon from '@mui/icons-material/Anchor';
 import { useState, useEffect } from 'react'
 import {
     app,
@@ -11,14 +12,15 @@ import {
     TitleSubtitle,
     ValueWithTitle,
 } from '@List'
-import UpsertSectionItem from './UpsertItem'
-import UpdateItemCta from './UpdateItemCta';
+import UpsertSectionItem from '../Item/Upsert'
+import UpdateItemPrimaryCta from '../Item/PrimaryCta';
+import UpdateItemSeconaryCta from '../Item/SecondaryCta';
 import useSection from '../Hooks/useSection';
 
 const headers = (configs) => <>
     {configs.itemsHaveImage && <td></td>}
     <th start>Title</th>
-    {configs.itemsHavePrimaryCta && <th>CTA</th>}
+    {configs.itemsHavePrimaryCta && <th>Primary CTA</th>}
     {configs.itemsHaveSecondaryCta && <th>Secondary CTA</th>}
     {configs.itemsHaveAvatar && <th>Avatar</th>}
     {configs.itemsHaveSvgIcon && <th>SVG</th>}
@@ -74,11 +76,22 @@ const row = (configs) => (item) => <>
 </>
 
 const entityActions = (configs) => (entity) => <>
-    <EntityAction
-        title='Manage actions'
-        icon={BoltIcon}
-        dialog={UpdateItemCta}
-    />
+    {
+        configs.itemsHavePrimaryCta &&
+        <EntityAction
+            title='Primary CTA'
+            icon={BoltIcon}
+            dialog={UpdateItemPrimaryCta}
+        />
+    }
+    {
+        configs.itemsHaveSecondaryCta &&
+        <EntityAction
+            title='Secondary CTA'
+            icon={AnchorIcon}
+            dialog={UpdateItemSeconaryCta}
+        />
+    }
 </>
 
 const SectionItems = ({ setProgress }) => {

@@ -2,9 +2,9 @@ import AbcIcon from '@mui/icons-material/Abc';
 import Images from './Image/List'
 import PageContent from './Page/Content'
 import Pages from './Page/List'
-import SectionActions from './Section/Actions'
+import SectionActions from './Action/List'
 import SectionContent from './Section/Content';
-import SectionItems from './Section/Items'
+import SectionItems from './Item/List'
 import Sections from './Section/List'
 import Texts from './Text/List'
 
