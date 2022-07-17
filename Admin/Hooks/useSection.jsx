@@ -27,10 +27,6 @@ const useSection = ({ setProgress }) => {
         }
     }, [section])
 
-    useEffect(() => {
-        console.log(configs)
-    }, [configs])
-
     return {
         configs,
         section,
