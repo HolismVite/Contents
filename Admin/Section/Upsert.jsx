@@ -1,20 +1,26 @@
 import { DialogForm, Key, Text, LongText } from '@Form'
 
-const inputs = <>
+const inputs = (configs) => <>
     <Key />
     <Text
         column="Name"
         required="Please provide a name"
         placeholder="Name"
     />
-    <Text
-        column="Supertitle"
-        placeholder="Supertitle"
-    />
-    <Text
-        column="Title"
-        placeholder="Title"
-    />
+    {
+        configs
+            ?
+            configs.hasTitle && <Text
+                column="Supertitle"
+                placeholder="Supertitle"
+            />
+            :
+            <Text
+
+                column="Supertitle"
+                placeholder="Supertitle"
+            />
+    }
     <Text
         column='Subtitle'
         placeholder='Subtitle'
@@ -25,10 +31,11 @@ const inputs = <>
     />
 </>
 
-const UpsertSection = () => {
+const UpsertSection = (props) => {
+    console.log(props)
     return <DialogForm
         entityType='Section'
-        inputs={inputs}
+        inputs={inputs(props?.relatedItems?.configs)}
     />
 }
 
