@@ -72,7 +72,7 @@ const row = (configs) => (item) => <>
         configs.itemsHaveSvgIcon &&
         <td>
             <SvgProperty
-                column='iconSvg'
+                value={item.iconSvg}
                 actionUrl={`/sectionItem/setIconSvg?id=${item.id}`}
             />
         </td>
