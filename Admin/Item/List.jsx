@@ -8,6 +8,7 @@ import {
     Image,
     List,
     Text,
+    SvgProperty,
     useMessage,
     TitleSubtitle,
     ValueWithTitle,
@@ -70,7 +71,10 @@ const row = (configs) => (item) => <>
     {
         configs.itemsHaveSvgIcon &&
         <td>
-            SVG
+            <SvgProperty
+                column='iconSvg'
+                actionUrl={`/sectionItem/setIconSvg?id=${item.id}`}
+            />
         </td>
     }
 </>
@@ -114,7 +118,7 @@ const SectionItems = ({ setProgress }) => {
         row={row(configs)}
         entityActions={entityActions(configs)}
         upsert={configs.variableItems ? UpsertSectionItem : false}
-        hasEdit={true}
+        edit={UpsertSectionItem}
         hasDelete={configs.variableItems}
         separateRowForActions={true}
     />
