@@ -64,6 +64,18 @@ const card = (entity) => <>
                     subtitle={entity.subtitle?.cut(40)}
                 />
             </div>
+            <div>
+                {
+                    entity?.relatedItems?.configs?.hasPrimaryCta &&
+                    entity.primaryCtaText &&
+                    <a href={entity.primaryCtaLink?.startsWith('http') ? entity.primaryCtaLink : `${app.env('SITE_HOST')}${entity.primaryCtaLink}`} target="_blank" className="link">{entity.primaryCtaText}</a>
+                }
+                {
+                    entity?.relatedItems?.configs?.hasSeconaryCta &&
+                    entity.secondaryCtaText &&
+                    <a href={entity.secondaryCtaLink?.startsWith('http') ? entity.secondaryCtaLink : `${app.env('SITE_HOST')}${entity.secondaryCtaLink}`} target="_blank" className="link">{entity.secondaryCtaText}</a>
+                }
+            </div>
             <span className="text-slate-700 flex-1 text-end">{entity.name}</span>
         </div>
 
