@@ -72,7 +72,7 @@ const card = (entity) => <>
 
 const entityActions = (entity) => <>
     {
-        entity?.relatedItems?.configs?.itemsHavePrimaryCta &&
+        entity?.relatedItems?.configs?.hasPrimaryCta &&
         <EntityAction
             title='Primary CTA'
             icon={BoltIcon}
@@ -80,7 +80,7 @@ const entityActions = (entity) => <>
         />
     }
     {
-        entity?.relatedItems?.configs?.itemsHaveSecondaryCta &&
+        entity?.relatedItems?.configs?.hasSecondaryCta &&
         <EntityAction
             title='Secondary CTA'
             icon={AnchorIcon}
