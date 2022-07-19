@@ -1,8 +1,8 @@
+import AnchorIcon from '@mui/icons-material/Anchor';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
 import {
-    BooleanProperty,
     EntityAction,
     Image,
     List,
@@ -12,6 +12,7 @@ import {
 } from '@List'
 import { EntityConfigsAction } from 'Configuration'
 import UpsertSection from './Upsert'
+import UpdateCta from './Cta';
 
 const filters = <>
     <Text
@@ -71,11 +72,19 @@ const card = (entity) => <>
 
 const entityActions = (entity) => <>
     {
-        entity?.relatedItems?.configs?.hasActions &&
+        entity?.relatedItems?.configs?.itemsHavePrimaryCta &&
         <EntityAction
-            title='Manage actions'
+            title='Primary CTA'
             icon={BoltIcon}
-            goTo={`/section/actions?sectionId=${entity.id}`}
+            dialog={UpdateCta('Primary')}
+        />
+    }
+    {
+        entity?.relatedItems?.configs?.itemsHaveSecondaryCta &&
+        <EntityAction
+            title='Secondary CTA'
+            icon={AnchorIcon}
+            dialog={UpdateCta('Secondary')}
         />
     }
     {
