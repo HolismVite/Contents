@@ -17,9 +17,6 @@ const filters = <>
     <Text
         column='Name'
     />
-    <Text
-        column='Title'
-    />
 </>
 
 const sorts = [
@@ -45,31 +42,25 @@ const sorts = [
     }
 ]
 
-const headers = <>
-    <th></th>
-    <th>Content</th>
-    <th>Name</th>
-</>
-
-const row = (item) => <>
-    <td>
-        <Image
-            url={item.relatedItems.imageUrl}
-            uploadUrl={`/section/setImage?id=${item.id}&property=ImageGuid`}
-            deletionUrl={`/section/deleteImage?id=${item.id}&property=ImageGuid`}
-        />
-    </td>
-    <td>
+const card = (entity) => <>
+    <div className="grid gap-4">
+        <div className="flex items-center justify-between">
+            <Image
+                url={entity.relatedItems.imageUrl}
+                uploadUrl={`/section/setImage?id=${entity.id}&property=ImageGuid`}
+                deletionUrl={`/section/deleteImage?id=${entity.id}&property=ImageGuid`}
+            />
+            <span className="text-slate-700 flex-1 text-end">{entity.name}</span>
+        </div>
         <TitleSubtitle
-            supertitle={item.supertitle?.cut(40)}
+            supertitle={entity.supertitle?.cut(40)}
             title={<ValueWithTitle
-                value={item.title?.cut(30)}
-                title={item.description}
+                value={entity.title?.cut(30)}
+                title={entity.description}
             />}
-            subtitle={item.subtitle?.cut(40)}
+            subtitle={entity.subtitle?.cut(40)}
         />
-    </td>
-    <td>{item.name}</td>
+    </div>
 </>
 
 const entityActions = (entity) => <>
@@ -102,8 +93,7 @@ const Sections = ({ isSuperAdmin }) => {
         create={isSuperAdmin && UpsertSection}
         filters={filters}
         sorts={sorts}
-        headers={headers}
-        row={row}
+        card={card}
         entityActions={entityActions}
         hasDelete={isSuperAdmin}
         edit={UpsertSection}

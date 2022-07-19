@@ -1,26 +1,23 @@
 import { DialogForm, Key, Text, LongText } from '@Form'
 
-const inputs = (configs) => <>
+const insertInputs = <>
     <Key />
     <Text
         column="Name"
         required="Please provide a name"
         placeholder="Name"
+        superAdmin
     />
-    {
-        configs
-            ?
-            configs.hasTitle && <Text
-                column="Supertitle"
-                placeholder="Supertitle"
-            />
-            :
-            <Text
+    <Text
 
-                column="Supertitle"
-                placeholder="Supertitle"
-            />
-    }
+        column="Supertitle"
+        placeholder="Supertitle"
+    />
+    <Text
+
+        column="Title"
+        placeholder="Title"
+    />
     <Text
         column='Subtitle'
         placeholder='Subtitle'
@@ -31,11 +28,50 @@ const inputs = (configs) => <>
     />
 </>
 
-const UpsertSection = (props) => {
-    console.log(props)
+const editInputs = (configs) => <>
+    <Key />
+    <Text
+        column="Name"
+        required="Please provide a name"
+        placeholder="Name"
+        superAdmin
+    />
+    {
+        configs.hasSupertitle && <Text
+            column="Supertitle"
+            placeholder="Supertitle"
+        />
+    }
+    {
+        configs.hasTitle && <Text
+            column="Title"
+            placeholder="Title"
+        />
+    }
+    {
+        configs.hasSubtitle && <Text
+            column='Subtitle'
+            placeholder='Subtitle'
+        />
+    }
+    {
+        configs.hasDescription && <LongText
+            column="Description"
+            placeholder='Description'
+        />
+    }
+</>
+
+const UpsertSection = ({ entity, isEdit }) => {
     return <DialogForm
         entityType='Section'
-        inputs={inputs(props?.relatedItems?.configs)}
+        inputs={
+            isEdit
+                ?
+                editInputs(entity?.relatedItems?.configs)
+                :
+                insertInputs
+        }
     />
 }
 
