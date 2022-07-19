@@ -3,6 +3,7 @@ import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BoltIcon from '@mui/icons-material/Bolt';
 import {
+    Chip,
     EntityAction,
     Image,
     List,
@@ -44,41 +45,43 @@ const sorts = [
 ]
 
 const card = (entity) => <>
-    <div className="grid gap-4">
-        <div className="flex items-top justify-between">
-            <div>
-                {
-                    entity?.relatedItems?.configs?.hasImage &&
-                    <Image
-                        url={entity.relatedItems.imageUrl}
-                        uploadUrl={`/section/setImage?id=${entity.id}&property=ImageGuid`}
-                        deletionUrl={`/section/deleteImage?id=${entity.id}&property=ImageGuid`}
-                    />
-                }
-                <TitleSubtitle
-                    supertitle={entity.supertitle?.cut(40)}
-                    title={<ValueWithTitle
-                        value={entity.title?.cut(30)}
-                        title={entity.description}
-                    />}
-                    subtitle={entity.subtitle?.cut(40)}
+    <div className="grid gap-2 grid-cols-2 mb-4 md:grid-cols-3">
+        <div>
+            {
+                entity?.relatedItems?.configs?.hasImage &&
+                <Image
+                    url={entity.relatedItems.imageUrl}
+                    uploadUrl={`/section/setImage?id=${entity.id}&property=ImageGuid`}
+                    deletionUrl={`/section/deleteImage?id=${entity.id}&property=ImageGuid`}
                 />
-            </div>
-            <div>
-                {
-                    entity?.relatedItems?.configs?.hasPrimaryCta &&
-                    entity.primaryCtaText &&
-                    <a href={entity.primaryCtaLink?.startsWith('http') ? entity.primaryCtaLink : `${app.env('SITE_HOST')}${entity.primaryCtaLink}`} target="_blank" className="link">{entity.primaryCtaText}</a>
-                }
-                {
-                    entity?.relatedItems?.configs?.hasSeconaryCta &&
-                    entity.secondaryCtaText &&
-                    <a href={entity.secondaryCtaLink?.startsWith('http') ? entity.secondaryCtaLink : `${app.env('SITE_HOST')}${entity.secondaryCtaLink}`} target="_blank" className="link">{entity.secondaryCtaText}</a>
-                }
-            </div>
-            <span className="text-slate-700 flex-1 text-end">{entity.name}</span>
+            }
+            <TitleSubtitle
+                supertitle={entity.supertitle?.cut(40)}
+                title={<ValueWithTitle
+                    value={entity.title?.cut(30)}
+                    title={entity.description}
+                />}
+                subtitle={entity.subtitle?.cut(40)}
+            />
         </div>
-
+        <div className="flex flex-col gap-1 col-start-1 row-start-2 md:col-start-2 md:row-start-1 md:justify-self-center">
+            {
+                entity?.relatedItems?.configs?.hasPrimaryCta &&
+                entity.primaryCtaText &&
+                <a href={entity.primaryCtaLink?.startsWith('http') ? entity.primaryCtaLink : `${app.env('SITE_HOST')}${entity.primaryCtaLink}`} target="_blank" className="link">{entity.primaryCtaText}</a>
+            }
+            {
+                entity?.relatedItems?.configs?.hasSecondaryCta &&
+                entity.secondaryCtaText &&
+                <a href={entity.secondaryCtaLink?.startsWith('http') ? entity.secondaryCtaLink : `${app.env('SITE_HOST')}${entity.secondaryCtaLink}`} target="_blank" className="link">{entity.secondaryCtaText}</a>
+            }
+        </div>
+        <div className="justify-self-end">
+            <Chip
+                text={entity.name}
+                className="text-slate-700 flex-1 text-end bg-green-400"
+            />
+        </div>
     </div>
 </>
 
