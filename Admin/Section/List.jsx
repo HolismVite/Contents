@@ -44,41 +44,56 @@ const sorts = [
 
 const card = (entity) => <>
     <div className="grid gap-4">
-        <div className="flex items-center justify-between">
-            <Image
-                url={entity.relatedItems.imageUrl}
-                uploadUrl={`/section/setImage?id=${entity.id}&property=ImageGuid`}
-                deletionUrl={`/section/deleteImage?id=${entity.id}&property=ImageGuid`}
-            />
+        <div className="flex items-top justify-between">
+            <div>
+                {
+                    entity?.relatedItems?.configs?.hasImage &&
+                    <Image
+                        url={entity.relatedItems.imageUrl}
+                        uploadUrl={`/section/setImage?id=${entity.id}&property=ImageGuid`}
+                        deletionUrl={`/section/deleteImage?id=${entity.id}&property=ImageGuid`}
+                    />
+                }
+                <TitleSubtitle
+                    supertitle={entity.supertitle?.cut(40)}
+                    title={<ValueWithTitle
+                        value={entity.title?.cut(30)}
+                        title={entity.description}
+                    />}
+                    subtitle={entity.subtitle?.cut(40)}
+                />
+            </div>
             <span className="text-slate-700 flex-1 text-end">{entity.name}</span>
         </div>
-        <TitleSubtitle
-            supertitle={entity.supertitle?.cut(40)}
-            title={<ValueWithTitle
-                value={entity.title?.cut(30)}
-                title={entity.description}
-            />}
-            subtitle={entity.subtitle?.cut(40)}
-        />
+
     </div>
 </>
 
 const entityActions = (entity) => <>
-    <EntityAction
-        title='Manage actions'
-        icon={BoltIcon}
-        goTo={`/section/actions?sectionId=${entity.id}`}
-    />
-    <EntityAction
-        title='Manage items'
-        icon={ListAltIcon}
-        goTo={`/section/items?sectionId=${entity.id}`}
-    />
-    <EntityAction
-        title='Edit content'
-        icon={TextSnippetIcon}
-        goTo={`/section/editContent?id=${entity.id}`}
-    />
+    {
+        entity?.relatedItems?.configs?.hasActions &&
+        <EntityAction
+            title='Manage actions'
+            icon={BoltIcon}
+            goTo={`/section/actions?sectionId=${entity.id}`}
+        />
+    }
+    {
+        entity?.relatedItems?.configs?.hasItems &&
+        <EntityAction
+            title='Manage items'
+            icon={ListAltIcon}
+            goTo={`/section/items?sectionId=${entity.id}`}
+        />
+    }
+    {
+        entity?.relatedItems?.configs?.hasContent &&
+        <EntityAction
+            title='Edit content'
+            icon={TextSnippetIcon}
+            goTo={`/section/editContent?id=${entity.id}`}
+        />
+    }
     <EntityConfigsAction
         entityType={entity.relatedItems.entityType}
         entityGuid={entity.guid}
@@ -96,7 +111,11 @@ const Sections = ({ isSuperAdmin }) => {
         card={card}
         entityActions={entityActions}
         hasDelete={isSuperAdmin}
-        edit={UpsertSection}
+        edit={({ entity }) => {
+            var configs = entity?.relatedItems?.configs
+            var hasEdit = isSuperAdmin || configs?.hasSupertitle || configs?.hasTitle || configs?.hasSubtitle || configs?.hasDescription
+            return hasEdit && UpsertSection
+        }}
         separateRowForActions={true}
     />
 }
